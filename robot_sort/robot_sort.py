@@ -100,33 +100,27 @@ class SortingRobot:
         self.set_light_on()
 
         while self.light_is_on():
-            
-            # Check if the robot is not hodling an item
-            if self.compare_item() == None:
-                # set the current item to the item at position 0
-                self.swap_item()
+            self.swap_item()
+        
+            # While the robot can move right  
 
-            # While the robot can move right   
             while self.can_move_right():
 
                 # keep moving right
                 self.move_right()
-
-                # If the current item is greater than the item at the position
+                # Check If the current item is greater than the item at the position
                 if self.compare_item() == 1:
-
                     # swap the item
                     self.swap_item()
 
             # while the robot can move left and the current item is less than the item at the current position   
-            while self.can_move_left() and self.compare_item() == -1:
-
+            while self.can_move_left() and not self.compare_item() == None:
                 # Keep moving left
                 self.move_left()
             # Swap
             self.swap_item()
 
-            # check if there is still possibility to m ove towards the right
+            # # check if there is still possibility to move towards the right
             if (self.can_move_right()):
                 self.move_right()  
             else: 
